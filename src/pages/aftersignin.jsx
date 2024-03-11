@@ -3,7 +3,6 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "../firebase";
 import SignUpPage from "./signup";
 import SignInPage from "./signin";
-import FireStorepg from "./fireStore";
 
 const auth = getAuth(app);
 

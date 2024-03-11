@@ -22,6 +22,9 @@ const Navbar = () => {
         <a href="/about" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
           About Us
         </a>
+        <a href="/location" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
+          Location
+        </a>
       </div>
     </nav>
   );

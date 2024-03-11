@@ -4,7 +4,6 @@ import {
   addDoc,
   getDoc,
   doc,
-  Firestore,
   query,
   where,
   getDocs,

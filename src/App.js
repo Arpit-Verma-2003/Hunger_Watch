@@ -7,6 +7,7 @@ import Navbar from "./pages/navbar";
 import "./App.css";
 import Home from "./pages/home";
 import About from "./pages/about"; 
+import Location from "./pages/location";
 function App() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/fetch" element={<Fetch />}></Route>
           <Route path="/firestore" element={<FireStorepg />}></Route>
           <Route path="/about" element={<About />}></Route>
+          <Route path="/location" element={<Location/>}></Route>
         </Routes>
       </div>
     </Router>
