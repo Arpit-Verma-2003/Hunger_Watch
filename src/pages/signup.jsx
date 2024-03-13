@@ -30,7 +30,7 @@ const SignUpPage = () => {
         value={email}
         type="email"
         required
-        placeholder="Email Daal"
+        placeholder="Enter Email"
       />
       <label>Password</label>
       <input
@@ -38,10 +38,11 @@ const SignUpPage = () => {
         value={password}
         type="password"
         required
-        placeholder="Password Likh"
+        placeholder="Enter Password"
       />
       <button onClick={createUser}>Sign Up</button>
       <br></br>
+      <br />
       <button onClick={signUpWithGoogle}>SignUp With Google</button>
     </div>
   );

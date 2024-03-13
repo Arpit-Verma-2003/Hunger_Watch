@@ -1,5 +1,4 @@
 import {
-  getFirestore,
   collection,
   addDoc,
   getDoc,
@@ -8,12 +7,11 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { app } from "../firebase";
-const db = getFirestore(app);
+import { firestoreDb } from "../firebase";
 
 const FireStorepg = () => {
   const writeData = async () => {
-    const result = await addDoc(collection(db, "needers"), {
+    const result = await addDoc(collection(firestoreDb, "needers"), {
       donaterName: "arp",
       age: 20,
       area: "gurugram",
@@ -21,12 +19,12 @@ const FireStorepg = () => {
     console.log(result);
   };
   const getDocument = async () => {
-    const ref = doc(db, "ThisIsUsers1", "fy73jRsK77Dcn6crBpnv");
+    const ref = doc(firestoreDb, "ThisIsUsers1", "fy73jRsK77Dcn6crBpnv");
     const snap = await getDoc(ref);
     console.log(snap.data());
   };
   const getDocumentsByQuery = async () => {
-    const collectionRef = collection(db, "ThisIsUsers1");
+    const collectionRef = collection(firestoreDb, "ThisIsUsers1");
     const q = query(collectionRef, where("donater", "==", true));
     const snapShot = getDocs(q);
     (await snapShot).forEach((data) => console.log(data.data()));

@@ -14,9 +14,9 @@ const SignInPage = () => {
         <div className="signin-page">
             <h2>Sign In Here</h2>
             <label>Email</label>
-            <input onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="email daal" type="email"></input>
+            <input onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter Email" type="email"></input>
             <label>Password</label>
-            <input onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="password daal" type="password"></input>
+            <input onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="Enter Password" type="password"></input>
             <button onClick={signInUser}>Sign Me In</button>
         </div>
     );

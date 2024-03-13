@@ -11,14 +11,14 @@ const Navbar = () => {
           Sign Up / Login
         </a>
         <a href="/upload" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
-          Upload Proof
+          Community Section
         </a>
-        <a href="/fetch" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
+        {/* <a href="/fetch" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
           Fetch Posts
         </a>
         <a href="/firestore" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
           Add Details
-        </a>
+        </a> */}
         <a href="/about" className="nav-link" style={{ padding: "10px", margin: "0 5px", textDecoration: "none", color: "#333" }}>
           About Us
         </a>

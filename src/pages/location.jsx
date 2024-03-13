@@ -34,7 +34,6 @@ const Location = () => {
       <h3>Your country - {currLocation.country_name}</h3>
       <h3>Your connection - {currLocation.org}</h3>
       <br/><br /><br />
-      <h1>Kyu Hila Dala Na ?</h1>
     </div>
   );
 };
