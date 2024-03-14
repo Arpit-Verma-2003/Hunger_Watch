@@ -4,6 +4,7 @@ const Location = () => {
   const [currLocation, setCurrLocation] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const [city,setCity] = useState("");
   useEffect(() => {
     setIsLoading(true);
     getLocation();
@@ -12,6 +13,7 @@ const Location = () => {
     try {
         const location = await axios.get("https://ipapi.co/json");
         setCurrLocation(location.data);
+        setCity(currLocation.city);
     } catch (e) {
         setError(e);
     }
@@ -37,5 +39,4 @@ const Location = () => {
     </div>
   );
 };
-
 export default Location;
