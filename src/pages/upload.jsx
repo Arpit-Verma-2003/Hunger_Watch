@@ -6,6 +6,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   query,
   where,
   doc,
@@ -22,7 +23,7 @@ const Upload = () => {
   const [img, setImg] = useState(null);
   const [txt, setTxt] = useState(null);
   const [data, setData] = useState([]);
-  const [comments, setComments] = useState({}); // Object to store comments for each post
+  const [comments, setComments] = useState({}); 
   const [currentPostId, setCurrentPostId] = useState(null);
   const [currLocation, setCurrLocation] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -51,6 +52,8 @@ const Upload = () => {
     });
     setCurrentPostId(newPost.id);
     alert("Post added successfully");
+    getData();
+    getDocumentsByQuery();
   };
 
   const getData = async () => {
@@ -124,15 +127,27 @@ const Upload = () => {
     }
   };
 
-  const deletePostHandler = async (postId,userEmail) => {
-    if(userEmail===postId.userMail){console.log("you can delete this")}
-    else{
-      console.log("you can't delete this")
+  const deletePostHandler = async (postId, userEmail) => {
+    try {
+      const postDoc = await getDoc(doc(db, "posts", postId));
+      if (postDoc.exists() && postDoc.data().userMail) {
+        const postUserMail = postDoc.data().userMail;
+        if (userEmail === postUserMail) {
+          console.log("You can delete this post");
+          await deleteDoc(postDoc.ref);
+          alert("Post Successfully Deleted");
+          getData();
+          getDocumentsByQuery();
+        } else {
+          console.log("You can't delete this post");
+          alert("You are not authorized to delete this post.");
+        }
+      } else {
+        console.log("Post not found or userMail field missing");
+      }
+    } catch (error) {
+      console.error("Error deleting post:", error);
     }
-    console.log(user.email);
-    console.log(postId.userMail);
-    console.log(postId);
-    // await deleteDoc(doc(db, "posts",postId));
   };
 
   const handleComment = async (commentText, postId) => {
@@ -148,7 +163,8 @@ const Upload = () => {
       userMail: user.email,
       userName: user.displayName,
     });
-    getCommentsForPost(postId); // Refresh comments for the current post
+    alert("Comment Sucessfully Added");
+    getCommentsForPost(postId);
   };
 
   if (isLoading) {
@@ -169,12 +185,14 @@ const Upload = () => {
           onChange={(e) => setTxt(e.target.value)}
           placeholder="Enter Details"
         />
-        <button onClick={handleClick}>Create Post</button> <br /> <br /> <br />
+        <button onClick={handleClick}>Create Post</button> <br /> <br /> 
+        <button onClick={getDocumentsByQuery}>Only Show {currLocation.city} Posts</button>
+        <br />
         <h1>Wanna Volunteer ? Recent Need Posts Near {currLocation.city} - </h1>
         {data.map((value) => (
           <div key={value.id}>
             <img src={value.proof} height="400px" width="400px" alt="" /> <br />
-            <button onClick={() => deletePostHandler(value.id,user.email)}>
+            <button onClick={() => deletePostHandler(value.id, user.email)}>
               Delete Post
             </button>
             <h3>Details - {value.caption}</h3>
@@ -193,12 +211,11 @@ const Upload = () => {
               placeholder="Want To Help ?"
               onChange={(e) => {
                 const { value } = e.target;
-                setCurrentPostId(value.id); // Set currentPostId here before calling handleComment
+                setCurrentPostId(value.id); // Set currentPostId before calling handleComment
                 setTxt(value); // Update txt state with the comment text
               }}
             />
             <button onClick={() => handleComment(txt, value.id)}>Submit</button>{" "}
-            {/* Add a submit button */}
           </div>
         ))}
       </>
