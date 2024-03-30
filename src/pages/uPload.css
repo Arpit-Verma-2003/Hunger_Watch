@@ -1,0 +1,146 @@
+/* Upload.css */
+
+/* Dynamic CSS variables */
+:root {
+  --main-background-color: #f5e6ca; /* Pastel yellow background */
+  --post-container-background-color: #f9fafb; /* Light gray background */
+  --create-post-button-color: #2c3e50; /* Dark blue for Create Post button */
+  --delete-button-color: #e74c3c; /* Red for Delete button */
+  --submit-button-color: #3498db; /* Blue for Submit button */
+}
+
+/* Font styles */
+body {
+  font-family: "Arial", sans-serif; /* Main font family */
+}
+
+/* Styles for the main container */
+#upload-container {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--main-background-color);
+}
+
+/* Styles for the post container */
+.post-container {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: var(--post-container-background-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Styles for the post image */
+.post-image {
+  max-width: 100%; /* Ensure images don't exceed container width */
+  max-height: 400px; /* Set maximum height for images */
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+/* Styles for the delete button */
+.delete-button {
+  background-color: var(--delete-button-color); /* Red */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Styles for the comment input */
+.comment-input {
+  width: calc(100% - 100px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Styles for the submit button */
+.submit-button {
+  background-color: var(--submit-button-color); /* Blue */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Styles for the 'Need Help' heading */
+.need-help-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333; /* Dark text color */
+}
+
+/* Styles for the caption input */
+.caption-input {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Styles for the upload button */
+.upload-button {
+  background-color: var(--create-post-button-color); /* Dark blue */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #34495e; /* Darker blue on hover */
+}
+
+/* Styles for the only-show-posts button */
+.only-show-posts-button {
+  background-color: var(--create-post-button-color); /* Dark blue */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.only-show-posts-button:hover {
+  background-color: #34495e; /* Darker blue on hover */
+}
+
+/* Styles for the 'Details' and 'Post By' sections */
+.post-details,
+.post-by {
+  font-family: "Times New Roman", serif; /* Different font for these sections */
+}
+
+/* Styles for comments */
+.comment {
+  font-style: italic; /* Italicize comments */
+}

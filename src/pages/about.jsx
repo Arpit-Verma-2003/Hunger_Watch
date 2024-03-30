@@ -1,10 +1,10 @@
-import React from 'react'
-
+import React from "react";
+import "./aboutus.css";
 const About = () => {
   return (
     <>
-    <div style={{ maxWidth: "800px", margin: "auto", padding: "20px" }}>
-        <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div className="about-container">
+        <h2>
           Welcome to the Food Insecurity Tracker: Taking Action Against Hunger
         </h2>
         <p>
@@ -41,28 +41,28 @@ const About = () => {
           <li>
             <strong>Accessibility:</strong> Our website is designed to be
             inclusive and accessible to all users, ensuring that everyone can
-            access the information and resources they need to improve their
-            food security.
+            access the information and resources they need to improve their food
+            security.
           </li>
           <li>
-            <strong>Transparency:</strong> We are committed to transparency
-            and accountability in everything we do. From our reporting
-            processes to our use of donations, we strive to maintain the
-            highest standards of integrity and honesty.
+            <strong>Transparency:</strong> We are committed to transparency and
+            accountability in everything we do. From our reporting processes to
+            our use of donations, we strive to maintain the highest standards of
+            integrity and honesty.
           </li>
         </ul>
         <h3>Join Us in the Fight Against Food Insecurity</h3>
         <p>
-          Together, we can make a difference. Join us in the fight against
-          food insecurity by exploring our website, reporting incidents,
-          accessing resources, and getting involved. Together, we can build a
-          future where hunger is no longer a barrier to health, happiness, and
-          opportunity. Welcome to the Food Insecurity Tracker - let's take
-          action against hunger, one meal at a time.
+          Together, we can make a difference. Join us in the fight against food
+          insecurity by exploring our website, reporting incidents, accessing
+          resources, and getting involved. Together, we can build a future where
+          hunger is no longer a barrier to health, happiness, and opportunity.
+          Welcome to the Food Insecurity Tracker - let's take action against
+          hunger, one meal at a time.
         </p>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;

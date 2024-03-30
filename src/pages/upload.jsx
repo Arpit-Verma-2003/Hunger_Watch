@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
+import "./uPload.css"; // Import the external CSS file
 import { storage, app } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
@@ -23,7 +24,7 @@ const Upload = () => {
   const [img, setImg] = useState(null);
   const [txt, setTxt] = useState(null);
   const [data, setData] = useState([]);
-  const [comments, setComments] = useState({}); 
+  const [comments, setComments] = useState({});
   const [currentPostId, setCurrentPostId] = useState(null);
   const [currLocation, setCurrLocation] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -163,7 +164,7 @@ const Upload = () => {
       userMail: user.email,
       userName: user.displayName,
     });
-    alert("Comment Sucessfully Added");
+    alert("Comment Successfully Added");
     getCommentsForPost(postId);
   };
 
@@ -176,23 +177,37 @@ const Upload = () => {
 
   if (user) {
     return (
-      <>
-        <br />
-        <h1>Need Help {user.displayName} ? Upload a Post 👇</h1>
-        <br />
-        <input type="file" onChange={(e) => uploadImage(e)} />
+      <div id="upload-container">
+        <h1 className="need-help-heading">
+          Need Help {user.displayName} ? Upload a Post 👇
+        </h1>
+        <input
+          type="file"
+          className="upload-input"
+          onChange={(e) => uploadImage(e)}
+        />
         <input
           onChange={(e) => setTxt(e.target.value)}
+          className="caption-input"
           placeholder="Enter Details"
         />
-        <button onClick={handleClick}>Create Post</button> <br /> <br /> 
-        <button onClick={getDocumentsByQuery}>Only Show {currLocation.city} Posts</button>
+        <button onClick={handleClick} className="upload-button">
+          Create Post
+        </button>
+        <br /> <br />
+        <button onClick={getDocumentsByQuery} className="upload-button">
+          Only Show {currLocation.city} Posts
+        </button>
         <br />
         <h1>Wanna Volunteer ? Recent Need Posts Near {currLocation.city} - </h1>
         {data.map((value) => (
-          <div key={value.id}>
-            <img src={value.proof} height="400px" width="400px" alt="" /> <br />
-            <button onClick={() => deletePostHandler(value.id, user.email)}>
+          <div key={value.id} className="post-container">
+            <img src={value.proof} className="post-image" alt="" />
+            <br />
+            <button
+              onClick={() => deletePostHandler(value.id, user.email)}
+              className="delete-button"
+            >
               Delete Post
             </button>
             <h3>Details - {value.caption}</h3>
@@ -209,22 +224,29 @@ const Upload = () => {
             <input
               type="text"
               placeholder="Want To Help ?"
+              className="comment-input"
               onChange={(e) => {
                 const { value } = e.target;
                 setCurrentPostId(value.id); // Set currentPostId before calling handleComment
                 setTxt(value); // Update txt state with the comment text
               }}
             />
-            <button onClick={() => handleComment(txt, value.id)}>Submit</button>{" "}
+            <button
+              onClick={() => handleComment(txt, value.id)}
+              className="submit-button"
+            >
+              Submit
+            </button>
+            <br />
           </div>
         ))}
-      </>
+      </div>
     );
   } else {
     return (
-      <>
-        <h1>You Need To Log In First</h1>
-      </>
+      <div id="upload-container">
+        <h1 className="need-help-heading">You Need To Log In First</h1>
+      </div>
     );
   }
 };

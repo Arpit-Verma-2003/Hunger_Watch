@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "../firebase";
 import SignUpPage from "./signup";
 import SignInPage from "./signin";
-
+// import "./AfterSignIn.css"
 const auth = getAuth(app);
 
 function AfterSign() {
@@ -18,20 +18,36 @@ function AfterSign() {
       }
     });
   }, []);
-  if (user) {
-    return (
-      <>
-        <h1>Hello {user.email}</h1>
-        <button onClick={() => signOut(auth)}>Signout</button>
-      </>
-    );
-  }
+
+  const handleSignOut = () => {
+    signOut(auth);
+  };
+
   return (
-    <>
-      <h1>Hunger Watch</h1>
-      <SignUpPage />
-      <SignInPage />
-    </>
+    <div className="container">
+      <h1 className="title">Hunger Watch</h1>
+      {user ? (
+        <div className="user-info">
+          <h2>
+            Hello {user.email}, You Could Now Proceed To Community Section
+          </h2>
+          <button onClick={handleSignOut} className="signout-button">
+            Sign Out
+          </button>
+        </div>
+      ) : (
+        <div className="auth-container">
+          <div className="signup-container">
+            <SignUpPage />
+          </div>
+          <hr className="divider" />
+          <div className="signin-container">
+            <SignInPage />
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
+
 export default AfterSign;

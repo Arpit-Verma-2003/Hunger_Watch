@@ -1,0 +1,41 @@
+/* About.css */
+
+.about-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9fafb; /* Subtle gray background */
+    color: #333; /* Subtle text color */
+  }
+  
+  .about-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .about-container h3 {
+    margin-top: 20px;
+  }
+  
+  .about-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .about-container li {
+    margin-bottom: 10px;
+  }
+  
+  .about-container strong {
+    font-weight: bold;
+  }
+  
+  .about-container a {
+    color: #007bff; /* Blue link color */
+    text-decoration: none;
+  }
+  
+  .about-container a:hover {
+    text-decoration: underline;
+  }
+  
