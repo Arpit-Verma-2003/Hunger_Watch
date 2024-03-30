@@ -2,12 +2,22 @@ import React, { useEffect, useState, useLayoutEffect } from "react";
 import { storage, app } from "../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  doc,
+  deleteDoc,
+  getFirestore,
+} from "firebase/firestore";
 import { firestoreDb } from "../firebase";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import axios from "axios";
 
 const Upload = () => {
+  const db = getFirestore(app);
   const [user, setUser] = useState();
   const [img, setImg] = useState(null);
   const [txt, setTxt] = useState(null);
@@ -54,14 +64,16 @@ const Upload = () => {
     const resolvedData = await Promise.all(allData);
     setData(resolvedData);
   };
-  
 
   const getCommentsForPost = async (postId) => {
     const commentRef = collection(firestoreDb, "comments");
     const q = query(commentRef, where("postId", "==", postId));
     const snapshot = await getDocs(q);
     const postComments = snapshot.docs.map((doc) => doc.data());
-    setComments((prevComments) => ({ ...prevComments, [postId]: postComments }));
+    setComments((prevComments) => ({
+      ...prevComments,
+      [postId]: postComments,
+    }));
   };
 
   const getDocumentsByQuery = async () => {
@@ -112,12 +124,23 @@ const Upload = () => {
     }
   };
 
+  const deletePostHandler = async (postId,userEmail) => {
+    if(userEmail===postId.userMail){console.log("you can delete this")}
+    else{
+      console.log("you can't delete this")
+    }
+    console.log(user.email);
+    console.log(postId.userMail);
+    console.log(postId);
+    // await deleteDoc(doc(db, "posts",postId));
+  };
+
   const handleComment = async (commentText, postId) => {
     if (!postId) {
       console.error("No post id provided for commenting");
       return;
     }
-  
+
     const commentRef = collection(firestoreDb, "comments");
     await addDoc(commentRef, {
       postId: postId,
@@ -127,7 +150,6 @@ const Upload = () => {
     });
     getCommentsForPost(postId); // Refresh comments for the current post
   };
-  
 
   if (isLoading) {
     return <div>Grabbing Your Location...</div>;
@@ -151,28 +173,32 @@ const Upload = () => {
         <h1>Wanna Volunteer ? Recent Need Posts Near {currLocation.city} - </h1>
         {data.map((value) => (
           <div key={value.id}>
-            <img src={value.proof} height="400px" width="400px" alt="" />
+            <img src={value.proof} height="400px" width="400px" alt="" /> <br />
+            <button onClick={() => deletePostHandler(value.id,user.email)}>
+              Delete Post
+            </button>
             <h3>Details - {value.caption}</h3>
             <h3>Post By - {value.userMail}</h3>
             <h4>Comments:</h4>
             {comments[value.id] &&
               comments[value.id].map((comment, index) => (
                 <div key={index}>
-                  <p>{comment.userName}: {comment.comment}</p>
+                  <p>
+                    {comment.userName}: {comment.comment}
+                  </p>
                 </div>
               ))}
-              <input
-  type="text"
-  placeholder="Leave a comment"
-  onChange={(e) => {
-    const { value } = e.target;
-    setCurrentPostId(value.id); // Set currentPostId here before calling handleComment
-    setTxt(value); // Update txt state with the comment text
-  }}
-/>
-<button onClick={() => handleComment(txt,value.id)}>Submit</button> {/* Add a submit button */}
-
-
+            <input
+              type="text"
+              placeholder="Want To Help ?"
+              onChange={(e) => {
+                const { value } = e.target;
+                setCurrentPostId(value.id); // Set currentPostId here before calling handleComment
+                setTxt(value); // Update txt state with the comment text
+              }}
+            />
+            <button onClick={() => handleComment(txt, value.id)}>Submit</button>{" "}
+            {/* Add a submit button */}
           </div>
         ))}
       </>
