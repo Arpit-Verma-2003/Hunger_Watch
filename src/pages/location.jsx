@@ -31,6 +31,7 @@ const Location = () => {
       }}
     >
       <h1>Your location details - </h1>
+      <h2>(Posts Would be Displayed According To Your Location)</h2>
       <h3>Your city - {currLocation.city}</h3>
       <h3>Your state - {currLocation.region}</h3>
       <h3>Your country - {currLocation.country_name}</h3>

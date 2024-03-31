@@ -43,6 +43,14 @@ const Upload = () => {
   };
 
   const handleClick = async () => {
+    if (!txt) {
+      alert("Make Sure You Have Added Caption Before Creating A Post");
+      return;
+    }
+    if (!img) {
+      alert("Make Sure You Have Added Proof Photo Before Creating A Post");
+      return;
+    }
     const valueRef = collection(firestoreDb, "posts");
     const newPost = await addDoc(valueRef, {
       caption: txt,
@@ -185,7 +193,8 @@ const Upload = () => {
           type="file"
           className="upload-input"
           onChange={(e) => uploadImage(e)}
-        />
+        />{" "}
+        <br /> <br />
         <input
           onChange={(e) => setTxt(e.target.value)}
           className="caption-input"
