@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Location.css"; // Import CSS file
 
 const Location = () => {
   const [currLocation, setCurrLocation] = useState({});
@@ -23,21 +24,17 @@ const Location = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#f9fafb",
-        padding: "20px",
-        borderRadius: "10px",
-      }}
-    >
-      <h1>Your location details - </h1>
+    <div className="location-container">
+      <h1>Your Location Details</h1>
       <h2>(Posts Would be Displayed According To Your Location)</h2>
-      <h3>Your city - {currLocation.city}</h3>
-      <h3>Your state - {currLocation.region}</h3>
-      <h3>Your country - {currLocation.country_name}</h3>
-      <h3>Your connection - {currLocation.org}</h3>
-      {isLoading && <div>Rukja Ek Sec...</div>}
-      {error && <div>Kuch toh gadbad hai location access krne me teri</div>}
+      <div className="location-details">
+        <p><strong>City:</strong> {currLocation.city}</p>
+        <p><strong>State:</strong> {currLocation.region}</p>
+        <p><strong>Country:</strong> {currLocation.country_name}</p>
+        <p><strong>Connection:</strong> {currLocation.org}</p>
+      </div>
+      {isLoading && <div className="loading">Loading...</div>}
+      {/* {error && <div className="error">Failed to fetch location data</div>} */}
     </div>
   );
 };

@@ -1,10 +1,8 @@
-/* Navbar.css */
-
 /* Dynamic CSS variables */
 :root {
-  --navbar-background-color: #ff6f61; /* Vibrant red background */
-  --nav-link-color: #fff; /* White link color */
-  --nav-link-hover-color: #ffe66d; /* Vibrant yellow hover color */
+  --navbar-background-color: #f0f0f0; /* Subtle gray background */
+  --nav-link-color: #333; /* Dark gray link color */
+  --nav-link-hover-color: #666; /* Slightly lighter hover color */
 }
 
 /* Styles for the navbar links */

@@ -8,6 +8,7 @@ import "./App.css";
 import Home from "./pages/home";
 import About from "./pages/about"; 
 import Location from "./pages/location";
+import ChatBot from "./pages/ChatBot";
 function App() {
   return (
     <Router>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/firestore" element={<FireStorepg />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/location" element={<Location/>}></Route>
+          <Route path="/chatbot" element={<ChatBot/>}></Route>
         </Routes>
       </div>
     </Router>

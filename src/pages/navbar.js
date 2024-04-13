@@ -10,6 +10,7 @@ const Navbar = () => {
         <a href="/upload" className="nav-link">Community Section</a>
         <a href="/about" className="nav-link">About Us</a>
         <a href="/location" className="nav-link">Location</a>
+        <a href="/chatbot" className="nav-link">Chatbot</a>
       </div>
     </nav>
   );

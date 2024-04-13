@@ -205,10 +205,10 @@ const Upload = () => {
         </button>
         <br /> <br />
         <button onClick={getDocumentsByQuery} className="upload-button">
-          Only Show {currLocation.city} Posts
+          Only Show {/*currLocation.city*/"Greater Noida"} Posts
         </button>
         <br />
-        <h1>Wanna Volunteer ? Recent Need Posts Near {currLocation.city} - </h1>
+        <h1>Wanna Volunteer ? Recent Need Posts Near Greater Noida - </h1>
         {data.map((value) => (
           <div key={value.id} className="post-container">
             <img src={value.proof} className="post-image" alt="" />
